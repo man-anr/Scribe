@@ -1,0 +1,67 @@
+﻿body, div, p, ul, li {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    font-family: Calibri, Helvetica, Sans-Serif;
+    font-size: 16px;
+}
+
+.wrapper {
+    width: 1368px;
+    margin: auto;
+}
+
+.content {
+    width: 100%;
+    background-color: rgb(254,254,254);
+    border: 1px solid rgb(224,224,224);
+    border-radius: 5px 5px 5px 5px;
+    float: left;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    min-height: 400px;
+}
+
+.menu {
+    height: 35px;
+    background-color: rgb(85, 87, 89);
+    color: rgb(255,255,255);
+    border-radius: 15px 15px 15px;
+}
+
+.menu h2 {
+        padding: 15px;
+        text-align: center;
+}
+ 
+
+.clear {
+    clear: both;
+}
+
+.column {
+    float: left;
+    width: 15%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column {
+    float: left;
+}
+
+.left, .right {
+    width: 25%;
+}
+
+.middle {
+    width: 50%;
+}
