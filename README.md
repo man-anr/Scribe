@@ -3,7 +3,7 @@
 
 ## Details
 Group 5
-An LMS system
+An learning management system made from ASP.NET Framework & Bootstrap 5
 
 ## Modules
 - Log In
