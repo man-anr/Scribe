@@ -1,9 +1,11 @@
 # Scribe: Learning Management System (SLMS)
 .NET Project
 
-## Details
-Group 5
-An learning management system made from ASP.NET Framework & Bootstrap 5
+## Group Details
+Group 5 
+
+## Project Details
+learning management system made from ASP.NET Framework & Bootstrap 5
 
 ## Modules
 - Log In
