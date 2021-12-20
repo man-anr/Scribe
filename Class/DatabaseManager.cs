@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace DatabaseProject
+namespace Scribe
 {
     public class DatabaseManager
     {
@@ -19,7 +19,7 @@ namespace DatabaseProject
             try
             {
                 //strConn = "Data Source = DESKTOP-C6IAJPU\\SQLEXPRESS; Initial Catalog = Project;  Integrated Security = True; Pooling = False";
-                strConn = "Data Source = localhost; Initial Catalog = Project;  Integrated Security = True; Pooling = False";
+                strConn = "Data Source = DESKTOP-4F1CBGS\\SQLEXPRESS; Initial Catalog = Scribe;  Integrated Security = True; Pooling = False";
                 sqlConn = new SqlConnection(strConn);
                 sqlCmd = new SqlCommand();
                 sqlCmd.Connection = sqlConn;

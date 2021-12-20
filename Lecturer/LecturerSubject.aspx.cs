@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace DatabaseProject
+namespace Scribe
 {
     public partial class LecturerSubject : System.Web.UI.Page
     {

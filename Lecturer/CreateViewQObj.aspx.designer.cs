@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DatabaseProject
+namespace Scribe
 {
 
 

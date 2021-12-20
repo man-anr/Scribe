@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DatabaseProject.MasterPage
+namespace Scribe.MasterPage
 {
 
 
-    public partial class MasterPage
+    public partial class Auth
     {
 
         /// <summary>

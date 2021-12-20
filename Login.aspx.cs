@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace DatabaseProject
+namespace Scribe
 {
     public partial class Login : System.Web.UI.Page
     {
@@ -20,14 +20,16 @@ namespace DatabaseProject
         {
             string id = txtbox_ID.Text;
             string pword = txtbox_password.Text;
-            string people = RadioButtonList1.Text;
+            string people = id;
+            System.Diagnostics.Debug.WriteLine("id: "+id);
+            System.Diagnostics.Debug.WriteLine("popele: "+people);
 
             DatabaseManager db = new DatabaseManager();
 
             try
             {
                 SqlConnection con = db.OpenConnection();
-                if (people == "Student")
+                if (people == "student")
                 {
                     SqlCommand cmmd = new SqlCommand("SELECT * FROM Student WHERE stud_id='" + id + "' AND stud_pw='" + pword + "'", con);
                     SqlDataReader reader = cmmd.ExecuteReader();
@@ -53,7 +55,7 @@ namespace DatabaseProject
                     reader.Close();
                 }
 
-                else if (people == "Lecturer")
+                else if (people == "lecturer")
                 {
                     SqlCommand cmmd = new SqlCommand("SELECT * FROM Lecturer WHERE lect_id='" + id + "' AND lect_pw='" + pword + "'", con);
                     SqlDataReader reader = cmmd.ExecuteReader();
@@ -78,7 +80,7 @@ namespace DatabaseProject
                     }
                 }
 
-                else if (people == "Admin")
+                else if (people == "admin")
                 {
                     SqlCommand cmmd = new SqlCommand("SELECT * FROM Admin WHERE admin_id='" + id + "' AND admin_pw='" + pword + "'", con);
                     SqlDataReader reader = cmmd.ExecuteReader();

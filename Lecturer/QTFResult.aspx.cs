@@ -7,7 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
-namespace DatabaseProject
+namespace Scribe
 {
     public partial class QTFResult : System.Web.UI.Page
     {

@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Collections;
 using System.Configuration;
 
-namespace DatabaseProject
+namespace Scribe
 {
     public class WorkloadLecturerClass
     {

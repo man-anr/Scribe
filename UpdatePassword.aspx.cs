@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace DatabaseProject
+namespace Scribe
 {
     public partial class UpdatePassword : System.Web.UI.Page
     {
