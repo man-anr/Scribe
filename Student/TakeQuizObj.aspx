@@ -1,23 +1,18 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/AdminPage.Master" AutoEventWireup="true" CodeBehind="TakeQuizObj.aspx.cs" Inherits="Scribe.TakeQuizObj" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Student.Master" AutoEventWireup="true" CodeBehind="TakeQuizObj.aspx.cs" Inherits="Scribe.TakeQuizObj" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bodycontent" runat="server">
-    <asp:Button ID="ListSubject" Text="Subject List Registered" runat="server" OnClick="SubjectListRegisterButton_Click" />
-    <asp:Button ID="LogOut" Text="Log Out" runat="server" OnClick="LogOutButton_Click" />
     <br />
     <div class="row">
       <div class="column">
-          <label>Subject Name: </label> <br />
-          <label>Subject Code: </label><br />
+          <label>Subject Name: </label> <label><%=Session["SubjectName"] %></label><br />
+          <label>Subject Code: </label> <label><%=Session["SubjectID"] %></label><br />
       </div>
-      <div class="column">
-          <label><%=Session["SubjectName"] %></label><br />
-          <label><%=Session["SubjectID"] %></label><br />
-      </div>
+      
     </div>
-    <asp:DataGrid ID="dgTakeQuizObj" runat="server" AllowPaging="True" AutoGenerateColumns="false" BackColor="White" BorderColor="Transparent" BorderStyle="Solid" OnItemCommand="dgTakeQuizObj_ItemCommand" OnItemDataBound="dgTakeQuizObj_ItemDataBound" OnPageIndexChanged="dgTakeQuizObj_PageIndexChanged" PageSize="10" ShowFooter="true" Width="900px">             
+    <asp:DataGrid ID="dgTakeQuizObj" runat="server" AllowPaging="False" AutoGenerateColumns="false" BackColor="White" BorderColor="Transparent" BorderStyle="Solid" OnItemCommand="dgTakeQuizObj_ItemCommand" OnItemDataBound="dgTakeQuizObj_ItemDataBound" OnPageIndexChanged="dgTakeQuizObj_PageIndexChanged" PageSize="10" ShowFooter="true" Width="100%">             
         <AlternatingItemStyle CssClass="Even_Row_Admin" />
         <HeaderStyle CssClass="Table_Header_Admin" />
         <Columns>
@@ -75,10 +70,10 @@
             <asp:TemplateColumn HeaderText="Confirm Your Answer">
                 <ItemTemplate>
                     <asp:Label ID="lbl_Confirm" Visible="false" runat="server"></asp:Label>
-                    <asp:Button ID="btnConfirmAnswer" Runat="server" CommandName="ConfirmAnswer" Text="Confirm" Enabled="true"/>
+                    <asp:Button ID="btnConfirmAnswer" Runat="server" CommandName="ConfirmAnswer" Text="Confirm" Enabled="true" CssClass="btn btn-primary text-white"/>
                 </ItemTemplate>
                 <FooterTemplate>
-                    <asp:Button ID="btnFinishAnswer" Runat="server" CommandName="FinishAnswer" Text="Finish" Enabled="true"/>
+                    <asp:Button Width="200px" ID="btnFinishAnswer" Runat="server" CommandName="FinishAnswer" Text="Finish" Enabled="true" CssClass="btn btn-success text-white"/>
                 </FooterTemplate>
                 <ItemStyle Width="5%" />
                 <HeaderStyle Font-Bold="True" />

@@ -1,32 +1,35 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/AdminPage.Master" AutoEventWireup="true" CodeBehind="SubmitATL.aspx.cs" Inherits="Scribe.SubmitATL" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Student.Master" AutoEventWireup="true" CodeBehind="SubmitATL.aspx.cs" Inherits="Scribe.SubmitATL" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bodycontent" runat="server">
-    <asp:Button ID="ListSubject" Text="Subject List Registered" runat="server" OnClick="SubjectListRegisterButton_Click" />
-    <asp:Button ID="LogOut" Text="Log Out" runat="server" OnClick="LogOutButton_Click" />
-    <br />
-    <div class="row">
-      <div class="column">
-          <label>Subject Name: </label> <br />
-          <label>Subject Code: </label><br />
-          <label>Assignment/Tutorial/Lab: </label><br />
-          <label>File:</label>
-      </div>
-      <div class="column">
-          <label><%=Session["SubjectName"] %></label><br />
-          <label><%=Session["SubjectID"] %></label><br />
-          <label><%=Session["ATL_Name"] %></label><br />
-          <asp:FileUpload ID="fileupload" runat="server"></asp:FileUpload>
-      </div>
-      <div class="column">
-          <br />
-          <br />
-          <br />
-          <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUploadDocument" />
-      </div>
-    </div>
+    <%--<asp:Button ID="ListSubject" Text="Subject List Registered" runat="server" OnClick="SubjectListRegisterButton_Click" />
+    <asp:Button ID="LogOut" Text="Log Out" runat="server" OnClick="LogOutButton_Click" />--%>
+
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <label>Subject Name: </label>
+            <label><%=Session["SubjectName"] %></label>
+
+        </li>
+        <li class="list-group-item">
+            <label>Subject Code: </label>
+            <label><%=Session["SubjectID"] %></label>
+        </li>
+        <li class="list-group-item">
+            <label>Assignment/Tutorial/Lab: </label>
+            <label><%=Session["ATL_Name"] %></label>
+        </li>
+        <li class="list-group-item">
+            <label>File:</label>
+            <asp:FileUpload ID="fileupload" runat="server"></asp:FileUpload>
+        </li>
+        <li class="list-group-item">
+            <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUploadDocument" Width="" CssClass="btn btn-success text-white" /></li>
+    </ul>
+
     <br />
     <asp:Label ID="lblAttention" runat="server" CssClass="Note"></asp:Label>
 </asp:Content>

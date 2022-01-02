@@ -16,10 +16,8 @@ namespace Scribe
         {
             ButtonHere.Visible = false;
             String id = Request.QueryString["id"];
-            if (id != null)
-            {
-                lblid.Text = id.ToString();
-            }
+            System.Diagnostics.Debug.WriteLine("-----------------" + id);
+            
         }
         protected void confirm_password_TextChanged(object sender, EventArgs e)
         {
@@ -29,51 +27,69 @@ namespace Scribe
         protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
 
-            String people = Request.QueryString["people"];
             String id = Request.QueryString["id"];
+            var items = id.Split('-');
+            string people = items[0];
             String confirmpw = confirm_password.Text;
+
+            System.Diagnostics.Debug.WriteLine(""+people + confirmpw + id);
 
             DatabaseManager db = new DatabaseManager();
             SqlConnection con = db.OpenConnection();
-            try
+            //try
+            //{
+            if (people == "st")
             {
-                if (people == "Student")
-                {
-                    cmd = new SqlCommand("UPDATE Student SET stud_pw=@newpw WHERE stud_id=@studid");
-                    cmd.Parameters.Add("@newpw", sqlDbType: SqlDbType.VarChar).Value = confirmpw;
-                    cmd.Parameters.Add("@studid", sqlDbType: SqlDbType.VarChar).Value = id;
-                    db.ExecuteNonQuery(cmd);
 
-                }
-                else if (people == "Lecturer")
-                {
-                    cmd = new SqlCommand("UPDATE Lecturer SET lect_pw=@newpw WHERE lect_id=@lectid");
-                    cmd.Parameters.Add("@newpw", sqlDbType: SqlDbType.VarChar).Value = confirmpw;
-                    cmd.Parameters.Add("@lectid", sqlDbType: SqlDbType.VarChar).Value = id;
-                    db.ExecuteNonQuery(cmd);
+                //SqlCommand cmmd = new SqlCommand("UPDATE Student SET stud_pw='" + id + "' WHERE stud_id='" + confirmpw + "'", con);
+                //con.Open();
+                //db.ExecuteNonQuery(cmmd);
+                //con.Close();
+                //SqlDataReader reader = cmmd.ExecuteReader();
 
-                }
-                else
-                {
-                    cmd = new SqlCommand("UPDATE Admin SET admin_pw=@newpw WHERE admin_id=@adminid");
-                    cmd.Parameters.Add("@newpw", sqlDbType: SqlDbType.VarChar).Value = confirmpw;
-                    cmd.Parameters.Add("@adminid", sqlDbType: SqlDbType.VarChar).Value = id;
-                    db.ExecuteNonQuery(cmd);
+                cmd = new SqlCommand("UPDATE Student SET stud_pw=@newpw WHERE stud_id=@studid");
+                cmd.Parameters.Add("@newpw", sqlDbType: SqlDbType.VarChar).Value = confirmpw;
+                cmd.Parameters.Add("@studid", sqlDbType: SqlDbType.VarChar).Value = id;
+                db.ExecuteNonQuery(cmd);
+                System.Diagnostics.Debug.WriteLine("----- " + "UPDATE Student SET stud_pw='" + confirmpw + "' WHERE stud_id='" + id + "'");
 
-                }
-                rfvPword.Enabled = false;
-                RequiredFieldValidator1.Enabled = false;
-                ButtonHere.Visible = true;
-                lbl_success.Text = "Password updated successfully. Click ";
             }
-            catch (Exception ex)
+            else if (people == "lt")
             {
-                Response.Write(ex.ToString());
+                cmd = new SqlCommand("UPDATE Lecturer SET lect_pw=@newpw WHERE lect_id=@lectid");
+                cmd.Parameters.Add("@newpw", sqlDbType: SqlDbType.VarChar).Value = confirmpw;
+                cmd.Parameters.Add("@lectid", sqlDbType: SqlDbType.VarChar).Value = id;
+                db.ExecuteNonQuery(cmd);
+                System.Diagnostics.Debug.WriteLine("lt " + cmd);
+
             }
-            finally
+            else if (people == "aa")
             {
-                db.CloseConnection();
+                cmd = new SqlCommand("UPDATE Admin SET admin_pw=@newpw WHERE admin_id=@adminid");
+                cmd.Parameters.Add("@newspw", sqlDbType: SqlDbType.VarChar).Value = confirmpw;
+                cmd.Parameters.Add("@adminid", sqlDbType: SqlDbType.VarChar).Value = id;
+                db.ExecuteNonQuery(cmd);
+                System.Diagnostics.Debug.WriteLine("aa " + cmd);
+
             }
+            else if (confirmpw == "root")
+            {
+                System.Diagnostics.Debug.WriteLine("password cant be old");
+            }
+            rfvPword.Enabled = false;
+            RequiredFieldValidator1.Enabled = false;
+            ButtonHere.Visible = true;
+            lbl_success.Text = "Password updated successfully. Click ";
+            Response.Redirect("Login.aspx", false);
+            //}
+            //catch (Exception ex)
+            //{
+            //    Response.Write(ex.ToString());
+            //}
+            //finally
+            //{
+            //    db.CloseConnection();
+            //}
         }
 
         protected void ButtonCancel_Click(object sender, EventArgs e)

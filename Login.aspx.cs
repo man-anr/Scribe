@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace Scribe
 {
@@ -20,16 +21,17 @@ namespace Scribe
         {
             string id = txtbox_ID.Text;
             string pword = txtbox_password.Text;
-            string people = id;
-            System.Diagnostics.Debug.WriteLine("id: "+id);
-            System.Diagnostics.Debug.WriteLine("popele: "+people);
+            var items = id.Split('-');
+            string people = items[0];
+            System.Diagnostics.Debug.WriteLine("id: " + id);
+            System.Diagnostics.Debug.WriteLine("popele: "+ people);
 
             DatabaseManager db = new DatabaseManager();
 
             try
             {
                 SqlConnection con = db.OpenConnection();
-                if (people == "student")
+                if (people == "st" || people == "student")
                 {
                     SqlCommand cmmd = new SqlCommand("SELECT * FROM Student WHERE stud_id='" + id + "' AND stud_pw='" + pword + "'", con);
                     SqlDataReader reader = cmmd.ExecuteReader();
@@ -55,7 +57,7 @@ namespace Scribe
                     reader.Close();
                 }
 
-                else if (people == "lecturer")
+                else if (people == "lt" || people == "lecturer")
                 {
                     SqlCommand cmmd = new SqlCommand("SELECT * FROM Lecturer WHERE lect_id='" + id + "' AND lect_pw='" + pword + "'", con);
                     SqlDataReader reader = cmmd.ExecuteReader();
@@ -80,7 +82,7 @@ namespace Scribe
                     }
                 }
 
-                else if (people == "admin")
+                else if (people == "aa" || people == "admin")
                 {
                     SqlCommand cmmd = new SqlCommand("SELECT * FROM Admin WHERE admin_id='" + id + "' AND admin_pw='" + pword + "'", con);
                     SqlDataReader reader = cmmd.ExecuteReader();
@@ -107,7 +109,12 @@ namespace Scribe
                 else if (people == "")
                 {
                     lblStatus.Text = "Choose either Student Login or Lecturer Login or Admin Login. Try again!";
+                } else
+                {
+                    lblStatus.Text = "Incorrect username or password";
                 }
+
+                con.Close();
 
             }
             catch (Exception ex)

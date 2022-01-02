@@ -1,45 +1,45 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/AdminPage.Master" AutoEventWireup="true" CodeBehind="CreateViewQObj.aspx.cs" Inherits="Scribe.CreateViewQObj" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage/Lecturer.Master" AutoEventWireup="true" CodeBehind="CreateViewQObj.aspx.cs" Inherits="Scribe.CreateViewQObj" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="title" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="bodycontent" runat="server"> 
-    <asp:Button ID="ListSubject" Text="List Subject" runat="server" OnClick="ListSubjectButton_Click" />
-    <asp:Button ID="LogOut" Text="Log Out" runat="server" OnClick="LogOutButton_Click" />
+    <asp:Button ID="ListSubject" Text="List Subject" runat="server" OnClick="ListSubjectButton_Click" CssClass="btn btn-primary text-white"/>
+    <%--<asp:Button ID="LogOut" Text="Log Out" runat="server" OnClick="LogOutButton_Click" />--%>
     <br />
     <div class="row">
       <div class="column">
-          <label>Subject Name: </label> <br />
-          <label>Subject Code: </label><br />
+          <label>Subject Name: </label> <label><%=Session["SubjectName"] %></label> <br />
+          <label>Subject Code: </label> <label><%=Session["SubjectID"] %></label><br />
       </div>
       <div class="column">
-          <label><%=Session["SubjectName"] %></label><br />
-          <label><%=Session["SubjectID"] %></label><br />
+         <br />
+         <br />
       </div>
     </div>
-    <asp:DataGrid ID="dgQuizObj" runat="server" AllowPaging="True" AutoGenerateColumns="false" BackColor="White" BorderColor="Transparent" BorderStyle="Solid" OnCancelCommand="dgCancel_QuizObj" OnEditCommand="dgEdit_QuizObj" OnItemCommand="dgQuizObj_ItemCommand" OnItemDataBound="dgQuizObj_ItemDataBound" OnPageIndexChanged="dgQuizObj_PageIndexChanged" OnUpdateCommand="dgUpdate_QuizObj" PageSize="10" ShowFooter="true" Width="900px">             
+    <asp:DataGrid ID="dgQuizObj" runat="server" AllowPaging="false" AutoGenerateColumns="false" BackColor="White" BorderColor="Transparent" BorderStyle="Solid" OnCancelCommand="dgCancel_QuizObj" OnEditCommand="dgEdit_QuizObj" OnItemCommand="dgQuizObj_ItemCommand" OnItemDataBound="dgQuizObj_ItemDataBound" OnPageIndexChanged="dgQuizObj_PageIndexChanged" OnUpdateCommand="dgUpdate_QuizObj" PageSize="10" ShowFooter="true" Width="">             
         <AlternatingItemStyle CssClass="Even_Row_Admin" />
         <HeaderStyle CssClass="Table_Header_Admin" />
         <Columns>
-            <asp:TemplateColumn HeaderText="No">
+            <%--<asp:TemplateColumn HeaderText="No">
                  <ItemTemplate>
-                    <asp:Label ID="lbl_ID_QuizObj" Visible="false" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "quiz_obj_id") %>'></asp:Label>
+                    <asp:Label ID="lbl_ID_QuizObj" Visible="true" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "quiz_obj_id") %>'></asp:Label>
                      <%# Container.ItemIndex + 1 %>
                 </ItemTemplate>                
                 <ItemStyle Width="20%" />
                 <HeaderStyle Font-Bold="True" />
-            </asp:TemplateColumn>
+            </asp:TemplateColumn>--%>
             <asp:TemplateColumn HeaderText="Question">
                 <ItemTemplate>
                     <asp:Label ID="lbl_QuizObj_Question" Runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "quiz_obj_question") %>'></asp:Label>
                 </ItemTemplate>
                 <EditItemTemplate>
-                    <asp:TextBox ID="txt_QuizObj_Question" runat="server" MaxLength="200" Text='<%# DataBinder.Eval(Container.DataItem, "quiz_obj_question") %>'></asp:TextBox>
+                    <asp:TextBox ID="txt_QuizObj_Question" runat="server" Width="100px" MaxLength="200" Text='<%# DataBinder.Eval(Container.DataItem, "quiz_obj_question") %>'></asp:TextBox>
                 </EditItemTemplate>
                 <FooterTemplate>
                     <asp:TextBox ID="txt_QuizObj_Question_New" MaxLength="200" runat="server"></asp:TextBox>
                 </FooterTemplate>
-                <ItemStyle Width="20%" />
+                <ItemStyle Width="" />
                 <HeaderStyle Font-Bold="True" />
             </asp:TemplateColumn>
             <asp:TemplateColumn HeaderText="Answer A">
@@ -107,28 +107,28 @@
                 <ItemStyle Width="20%" />
                 <HeaderStyle Font-Bold="True" />
             </asp:TemplateColumn>
-            <asp:TemplateColumn HeaderText="Modified By">
+            <%--<asp:TemplateColumn HeaderText="Modified By">
                 <ItemTemplate>
                     <asp:Label ID="lbl_QObj_Modified_By" Runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "quiz_obj_modified_by") %>'></asp:Label>
                 </ItemTemplate>
                 <ItemStyle Width="20%" />
                 <HeaderStyle Font-Bold="True" />
-            </asp:TemplateColumn>
-            <asp:TemplateColumn HeaderText="Modified On">
+            </asp:TemplateColumn>--%>
+            <%--<asp:TemplateColumn HeaderText="Modified On">
                 <ItemTemplate>
                     <asp:Label ID="lbl_QObj_Modified_On" Runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "quiz_obj_modified_date_time") %>'></asp:Label>
                 </ItemTemplate>
                 <ItemStyle Width="20%" />
                 <HeaderStyle Font-Bold="True" />
-            </asp:TemplateColumn>
-            <asp:EditCommandColumn ButtonType="PushButton" CancelText="Cancel" EditText="Update" HeaderText="Update" UpdateText="Update"><HeaderStyle Font-Bold="True" /></asp:EditCommandColumn>
-            <asp:TemplateColumn HeaderText="Delete">
+            </asp:TemplateColumn>--%>
+            <asp:EditCommandColumn ButtonType="PushButton" CancelText="Cancel" EditText="Update" HeaderText=" " UpdateText="Update" ><HeaderStyle Font-Bold="True" /> <ItemStyle CssClass="btn btn-danger text-white"/></asp:EditCommandColumn>
+            <asp:TemplateColumn HeaderText=" ">
                 <HeaderStyle Font-Bold="True" />
                 <ItemTemplate>
-                    <asp:Button ID="btnDeleteQuestion" Runat="server" CommandName="DeleteQuestion" Text="Delete" />
+                    <asp:Button ID="btnDeleteQuestion" Runat="server" CommandName="DeleteQuestion" Text="Delete" CssClass="btn btn-danger text-white"/>
                 </ItemTemplate>
                 <FooterTemplate>
-                    <asp:Button ID="btnAddQuestion" Runat="server" CommandName="AddQuestion" Text="Add" />
+                    <asp:Button ID="btnAddQuestion" Runat="server" CommandName="AddQuestion" Text="Add" CssClass="btn btn-success text-white"/>
                 </FooterTemplate>
             </asp:TemplateColumn>
         </Columns>
